@@ -1,36 +1,30 @@
-// server.js
 const express = require('express');
-const http = require('http');
 const cors = require('cors');
+const http = require('http');
 const { Server } = require('socket.io');
 
 const app = express();
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: { origin: '*' },
+});
+
 app.use(cors());
 app.use(express.json());
 
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: '*', // Hoặc domain Next.js của bạn
-    methods: ['GET', 'POST']
-  }
-});
-
-// Kết nối client
 io.on('connection', (socket) => {
-  console.log('🔌 Client connected:', socket.id);
-
-  socket.on('disconnect', () => {
-    console.log('❌ Client disconnected:', socket.id);
-  });
+  console.log('Client connected:', socket.id);
 });
 
-// Endpoint để gửi noti từ API (POST)
+// Thêm API /notify để gửi notification realtime
 app.post('/notify', (req, res) => {
   const { message } = req.body;
-  if (!message) return res.status(400).json({ error: 'Missing message' });
+  if (!message) {
+    return res.status(400).json({ error: 'Missing message' });
+  }
 
-  console.log('📢 Sending notification:', message);
+  // Phát sự kiện notification đến tất cả client
   io.emit('notification', { message });
 
   return res.json({ success: true });
