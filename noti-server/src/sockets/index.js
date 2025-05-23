@@ -11,12 +11,12 @@ function initSocket(server) {
   });
 }
 
-function sendNotification(message) {
+function sendNotification(donationId) {
   if (!io) {
     console.warn('Socket.io not initialized');
     return;
   }
-  io.emit('notification', { message });
+  io.emit('notification', { donationId }); // Emit donationId instead of message
 }
 
 module.exports = { initSocket, sendNotification };
