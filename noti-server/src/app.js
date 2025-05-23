@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');  // ← thêm import này
 const notifyRoutes = require('./routes/notifyRoutes');
 
 const app = express();
