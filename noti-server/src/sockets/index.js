@@ -19,4 +19,13 @@ function sendNotification(donationId) {
   io.emit('notification', { donationId }); // Emit donationId instead of message
 }
 
-module.exports = { initSocket, sendNotification };
+function sendNotificationForDoxaDay(donationId) {
+  if (!io) {
+    console.warn('Socket.io not initialized');
+    return;
+  }
+  io.emit('doxaday-notification', { donationId });
+}
+
+
+module.exports = { initSocket, sendNotification,sendNotificationForDoxaDay };
