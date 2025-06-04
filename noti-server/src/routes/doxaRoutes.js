@@ -6,14 +6,14 @@ const { sendNotification } = require('../sockets');
 router.post('/', (req, res) => {
     const { donationId } = req.body;
 
-    if (!donationId || !donationId.startsWith("DOXADAY")) {
+    if (!donationId || !donationId.includes("DOXADAY")) {
         return res.status(400).json({ error: "Invalid or missing DOXADAY ID" });
     }
 
     console.log("📢 Trigger socket for DOXADAY:", donationId);
-    sendNotification(donationId); // 🔔 Gửi tới các client
+    sendNotificationForDoxaDay(donationId); // 🔔 Gửi tới các client
 
-    return res.json({ success: true });
+    return res.status(200).json({ success: true });
 });
 
 module.exports = router;
