@@ -8,6 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/notify', notifyRoutes);
+app.use('/doxaday', doxaRoutes); // ✅ mount route mới
 
 // Middleware xử lý lỗi đơn giản
 app.use((err, req, res, next) => {
