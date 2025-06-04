@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const notifyRoutes = require('./routes/notifyRoutes');
+const doxaRoutes = require('./routes/doxaRoutes'); // ✅ import route mới
 
 const app = express();
 
