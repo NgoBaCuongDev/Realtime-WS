@@ -3,8 +3,9 @@ const router = express.Router();
 const { sendNotificationForOrder } = require("../sockets");
 
 // Route riêng cho DOXADAY
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   try {
+    
     const { donationId } = req.body;
 
     if (!donationId || !donationId.includes("ORDER")) {

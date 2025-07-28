@@ -27,12 +27,12 @@ function sendNotificationForDoxaDay(donationId) {
   io.emit("doxaday-notification", { donationId });
 }
 
-function sendNotificationForOrder(OrderId) {
+function sendNotificationForOrder(donationId) {
   if (!io) {
     console.warn("Socket.io not initialized");
     return;
   }
-  io.emit("order-notification", { OrderId });
+  io.emit("order-notification", { donationId });
 }
 
 module.exports = { initSocket, sendNotification, sendNotificationForDoxaDay,sendNotificationForOrder };
