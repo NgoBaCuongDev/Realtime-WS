@@ -35,7 +35,7 @@ function sendNotificationForOrder(donationId) {
   io.emit("order-notification", { donationId });
 }
 
-function sendNotificationForOrder(donationId) {
+function sendNotificationForCircle(donationId) {
   if (!io) {
     console.warn("Socket.io not initialized");
     return;
@@ -43,4 +43,4 @@ function sendNotificationForOrder(donationId) {
   io.emit("circle-notification", { donationId });
 }
 
-module.exports = { initSocket, sendNotification, sendNotificationForDoxaDay, sendNotificationForOrder };
+module.exports = { initSocket, sendNotification, sendNotificationForDoxaDay, sendNotificationForOrder, sendNotificationForCircle };
