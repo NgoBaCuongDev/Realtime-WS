@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { sendNotificationForDoxaDay } = require('../sockets');
+const { sendNotificationForCircle } = require('../sockets');
 
 // Route riêng cho DXC
 router.post('/', (req, res) => {
@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
         }
 
         console.log("📢 Trigger socket for DOXADAY:", donationId);
-        sendNotificationForDoxaDay(donationId); // 🔔 Gửi tới các client
+        sendNotificationForCircle(donationId); // 🔔 Gửi tới các client
 
         return res.status(200).json({ success: true });
     } catch (error) {
